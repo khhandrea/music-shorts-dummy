@@ -19,7 +19,12 @@ class MusicSlide extends StatelessWidget {
     return Stack(
       children: <Widget>[
         BackgroundCover(_imageUrl),
-        AlbumCover(_imageUrl),
+        Positioned(
+            top: (MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).size.width) /
+                2,
+            left: 0,
+            child: AlbumCover(_imageUrl)),
         Positioned(
           bottom: 0,
           child: MusicInformation(
@@ -92,10 +97,15 @@ class AlbumCover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      child: Image.network(url),
-    );
+    return TextButton(
+        onPressed: () {
+          print('music paused');
+        },
+        style: TextButton.styleFrom(padding: EdgeInsets.all(0)),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.width,
+          child: Image.network(url),
+        ));
   }
 }
